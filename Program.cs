@@ -1,6 +1,11 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.OpenApi.Models;
 using PdqOnline.Models;
-
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +18,30 @@ builder.Services.AddControllers();
 builder.Services.AddControllersWithViews(); // Added
 
 builder.Services.AddEndpointsApiExplorer(); // Added
-builder.Services.AddSwaggerGen(); // Added
+builder.Services.AddSwaggerGen(options =>
+{
+    options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+    {
+        Description = "Standard Authorization header using the Bearer scheme (\"bearer {token}\")",
+        In = ParameterLocation.Header,
+        Name = "Authorization",
+        Type = SecuritySchemeType.ApiKey
+    });
+
+    options.OperationFilter<SecurityRequirementsOperationFilter>();
+}); // Added
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetSection("AppSettings:Token").Value)),
+            ValidateIssuer = false,
+            ValidateAudience = false
+        };
+    });
 
 builder.Services.AddCors(); // Added
 
@@ -39,10 +67,11 @@ app.UseCors(builder =>
 });
 
 app.UseHttpsRedirection();
+app.UseRouting();
+app.UseAuthentication();
 app.UseAuthorization(); // Add middleware method used in ASP.NET Core applications to enable authorization for incoming HTTP requests.
 app.MapControllers(); // Added
 app.UseStaticFiles();
-app.UseRouting();
 
 
 app.MapControllerRoute(

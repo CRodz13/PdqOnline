@@ -1,4 +1,4 @@
-﻿namespace PdqOnline.Models
+﻿namespace PdqOnline
 {
     public class User
     {
