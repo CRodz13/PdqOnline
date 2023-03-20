@@ -1,10 +1,10 @@
+global using PdqOnline.Services.UserService;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
 using PdqOnline.Models;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,8 +16,9 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("CrudCS"))); // A
 
 builder.Services.AddControllers();
 builder.Services.AddControllersWithViews(); // Added
-
 builder.Services.AddEndpointsApiExplorer(); // Added
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddSwaggerGen(options =>
 {
     options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
