@@ -11,7 +11,7 @@ namespace PdqOnline.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "pdqEmployees",
+                name: "Employees",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
@@ -22,7 +22,7 @@ namespace PdqOnline.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_pdqEmployees", x => x.ID);
+                    table.PrimaryKey("PK_Employees", x => x.ID);
                 });
         }
 
@@ -30,7 +30,7 @@ namespace PdqOnline.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "pdqEmployees");
+                name: "Employees");
         }
     }
 }

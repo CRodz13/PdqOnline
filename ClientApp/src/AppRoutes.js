@@ -2,6 +2,8 @@ import { Counter } from "./components/Counter";
 import { FetchData } from "./components/FetchData";
 import { Home } from "./components/Home";
 import Crud from "./components/Crud";
+import FoodModal from "./components/FoodModal";
+import Menu from "./components/Menu";
 
 const AppRoutes = [
   {
@@ -19,6 +21,14 @@ const AppRoutes = [
   {
     path: '/pdqEmployee',
     element: <Crud />
+  },
+  {
+    path: '/FoodModal',
+    element: <FoodModal />
+  },
+  {
+    path: '/OnlineOrder',
+    element: <Menu />
   }
 
 ];

@@ -16,23 +16,23 @@ namespace PdqOnline.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<pdqEmployee>>> GetEmployees()
+        public async Task<ActionResult<IEnumerable<Employee>>> GetEmployees()
         {
-            if (_employeeContext.pdqEmployees == null)
+            if (_employeeContext.Employees == null)
             {
                 return NotFound();
             }
-            return await _employeeContext.pdqEmployees.ToListAsync();
+            return await _employeeContext.Employees.ToListAsync();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<pdqEmployee>> GetEmployee(int id)
+        public async Task<ActionResult<Employee>> GetEmployee(int id)
         {
-            if (_employeeContext.pdqEmployees == null)
+            if (_employeeContext.Employees == null)
             {
                 return NotFound();
             }
-            var employee = await _employeeContext.pdqEmployees.FindAsync(id);
+            var employee = await _employeeContext.Employees.FindAsync(id);
             if (employee == null)
             {
                 return NotFound(id);
@@ -41,16 +41,16 @@ namespace PdqOnline.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<pdqEmployee>> PostEmployee(pdqEmployee employee)
+        public async Task<ActionResult<Employee>> PostEmployee(Employee employee)
         {
-            _employeeContext.pdqEmployees.Add(employee);
+            _employeeContext.Employees.Add(employee);
             await _employeeContext.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetEmployee), new { id = employee.ID }, employee);
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> PutEmployee(int id, pdqEmployee employee)
+        public async Task<ActionResult> PutEmployee(int id, Employee employee)
         {
             if (id != employee.ID)
             {
@@ -71,16 +71,16 @@ namespace PdqOnline.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteEmployee(int id)
         {
-            if (_employeeContext.pdqEmployees == null)
+            if (_employeeContext.Employees == null)
             {
                 return NotFound();
             }
-            var employee = await _employeeContext.pdqEmployees.FindAsync(id);
+            var employee = await _employeeContext.Employees.FindAsync(id);
             if (employee == null)
             {
                 return NotFound();
             }
-            _employeeContext.pdqEmployees.Remove(employee);
+            _employeeContext.Employees.Remove(employee);
             await _employeeContext.SaveChangesAsync();
 
             return Ok();

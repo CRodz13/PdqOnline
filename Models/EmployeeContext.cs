@@ -8,6 +8,6 @@ namespace PdqOnline.Models
         {
 
         }
-        public DbSet<pdqEmployee> pdqEmployees { get; set; }
+        public DbSet<Employee> Employees { get; set; }
     }
 }

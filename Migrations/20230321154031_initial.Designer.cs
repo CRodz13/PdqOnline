@@ -11,7 +11,7 @@ using PdqOnline.Models;
 namespace PdqOnline.Migrations
 {
     [DbContext(typeof(EmployeeContext))]
-    [Migration("20230320010347_initial")]
+    [Migration("20230321154031_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -24,7 +24,7 @@ namespace PdqOnline.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("PdqOnline.Models.pdqEmployee", b =>
+            modelBuilder.Entity("PdqOnline.Models.Employee", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -43,7 +43,7 @@ namespace PdqOnline.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("pdqEmployees");
+                    b.ToTable("Employees");
                 });
 #pragma warning restore 612, 618
         }

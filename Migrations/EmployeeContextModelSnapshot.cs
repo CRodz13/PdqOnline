@@ -21,7 +21,7 @@ namespace PdqOnline.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("PdqOnline.Models.pdqEmployee", b =>
+            modelBuilder.Entity("PdqOnline.Models.Employee", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -40,7 +40,7 @@ namespace PdqOnline.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("pdqEmployees");
+                    b.ToTable("Employees");
                 });
 #pragma warning restore 612, 618
         }
