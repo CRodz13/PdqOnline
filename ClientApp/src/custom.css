@@ -18,10 +18,18 @@ code {
 
 .card-title {
   color: #DB5E2FFF;
+  font-family: Impact;
 }
 
 .card-text {
   color: #DB5E2FFF;
 }
 
+.hover-scale {
+  transition: transform 0.2s ease-in-out;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
 

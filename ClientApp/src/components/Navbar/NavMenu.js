@@ -23,7 +23,7 @@ export class NavMenu extends Component {
 
   render() {
     return (
-      <header className='bg-dark'>
+      <header>
         <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3 nav-links" container light>
           <NavbarBrand tag={Link} className="nav-brand" to="/">PdqOnline</NavbarBrand>
           <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />

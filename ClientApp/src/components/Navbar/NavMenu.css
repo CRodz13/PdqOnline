@@ -4,7 +4,7 @@ a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
-  font-family: 'Oswald', sans-serif;
+  font-family: Copperplate,Copperplate Gothic Light,fantasy;
 }
 
 html {
@@ -26,6 +26,7 @@ html {
 
 .nav-link {
   color: #DB5E2FFF;
+  font-family: Impact;
 }
 
 .nav-link:hover {
