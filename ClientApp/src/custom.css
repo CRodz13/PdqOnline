@@ -1,4 +1,8 @@
-/* Provide sufficient contrast against white background */
+:root {
+  --text-color: #DB5E2FFF;
+  --border-color: #DB5E2FFF;
+}
+
 body {
   background-color: black;
 }
@@ -33,3 +37,18 @@ code {
   transform: scale(1.05);
 }
 
+.btn-color {
+  color: var(--text-color);
+  border-color: var(--border-color);
+  font-weight: 500;
+  font-family: Impact;
+}
+
+.btn-color:hover{
+  background-color: #DB5E2FFF;
+}
+
+.label-text {
+  color: #DB5E2FFF;
+  font-family: Impact;
+}

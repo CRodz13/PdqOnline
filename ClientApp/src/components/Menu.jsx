@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Button, Card, Container, Col, Row } from "react-bootstrap";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { data } from "../data/data.js";
-import "bootstrap/dist/css/bootstrap.min.css";
+import Fade from 'react-bootstrap/Fade';
 
 function Menu() {
   const [foods, setFoods] = useState([]);
@@ -12,57 +12,53 @@ function Menu() {
 
   // Filter Type burgers/pizza/etc
   const filterType = (category) => {
-    setFoods(
-      data.filter((item) => item.category === category)
-    );
+    setFoods(data.filter((item) => item.category === category));
   };
 
   // Filter by price
   const filterPrice = (price) => {
-    setFoods(
-      data.filter((item) => item.price === price)
-    );
+    setFoods(data.filter((item) => item.price === price));
   };
 
   return (
     <Container>
-      <Row className="flex flex-col lg:flex-row justify-between">
+      <Row className="mt-4">
         {/* Filter Type */}
-        <Col>
-          <p className="font-bold text-gray-700">Filter Type</p>
-          <div className="flex justify-between flex-wrap">
+        <Col md={6} lg={6}>
+          <p className="label-text">Filter Type</p>
+          <div className="">
             <Button
               onClick={() => setFoods(data)}
-              className="m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white"
-              variant="outline-orange"
+              className="btn-color mx-2"
+              variant=""
             >
               All
             </Button>
             <Button
               onClick={() => filterType("burger")}
-              className="m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white"
-              variant="outline-orange"
+              className="btn-color mx-2"
+              variant=""
             >
               Burgers
             </Button>
             <Button
               onClick={() => filterType("pizza")}
-              className="m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white"
-              variant="outline-orange"
+              className="btn-color mx-2"
+              variant=""
             >
               Pizza
             </Button>
             <Button
               onClick={() => filterType("salad")}
-              className="m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white"
-              variant="outline-orange"
+              className="btn-color mx-2"
+              variant=""
             >
               Salads
             </Button>
             <Button
               onClick={() => filterType("chicken")}
-              className="m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white"
-              variant="outline-orange"
+              className="btn-color mx-2"
+              variant=""
             >
               Chicken
             </Button>
@@ -70,40 +66,41 @@ function Menu() {
         </Col>
 
         {/* Filter Price */}
-        <Col>
-          <p className="font-bold text-gray-700">Filter Price</p>
-          <div className="flex justify-between max-w-[390px] w-full">
+        <Col md={6} lg={6}>
+          <p className="label-text">Filter Price</p>
+          <div className="">
             <Button
               onClick={() => filterPrice("$")}
-              className="m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white"
-              variant="outline-orange"
+              className="btn-color mx-2"
+              variant=""
             >
               $
             </Button>
             <Button
               onClick={() => filterPrice("$$")}
-              className="m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white"
-              variant="outline-orange"
+              className="btn-color mx-2"
+              variant=""
             >
               $$
             </Button>
             <Button
               onClick={() => filterPrice("$$$")}
-              className="m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white"
-              variant="outline-orange"
+              className="btn-color mx-2"
+              variant=""
             >
               $$$
             </Button>
             <Button
               onClick={() => filterPrice("$$$$")}
-              className="m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white"
-              variant="outline-orange"
+              className="btn-color mx-2"
+              variant=""
             >
               $$$$
             </Button>
           </div>
         </Col>
       </Row>
+
       <Row xs={1} md={3} className="g-4 pt-5">
         {foods.map((item, index) => (
           <Col key={index}>

@@ -30,6 +30,7 @@ html {
 }
 
 .nav-link:hover {
+  background-color: #DB5E2FFF;
   text-decoration: underline;
   text-decoration-style: solid;
   text-decoration-color: #DB5E2FFF;
