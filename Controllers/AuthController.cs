@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Security.Cryptography;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
@@ -33,8 +32,6 @@ namespace PdqOnline.Controllers
             var role = User.FindFirstValue(ClaimTypes.Role);
             return Ok(new { userName, userName2, role });*/
         }
-
-
 
         [HttpPost("register")]
         public async Task<ActionResult<User>> Register(UserDto request)

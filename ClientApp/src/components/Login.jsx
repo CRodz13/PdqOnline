@@ -1,28 +1,52 @@
-import { Button, Form } from 'react-bootstrap'
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Form, FormGroup, Label, Input, Button } from 'reactstrap'
+import axios from 'axios';
 
 function Login() {
-  return (
-    <Form>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
-        </Form.Text>
-      </Form.Group>
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
+  const history = useNavigate();
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        Submit
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('/api/login', { username, password });
+      localStorage.setItem('token', response.data.token);
+      history.push('/dashboard');
+    } catch (error) {
+      setError(error.response.data.message);
+    }
+  };
+
+  return (
+    <Form onSubmit={handleLogin}>
+      <h2>Login</h2>
+      {error && <p className="text-danger">{error}</p>}
+      <FormGroup>
+        <Label>Username</Label>
+        <Input
+          type="text"
+          placeholder="Enter your username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+      </FormGroup>
+      <FormGroup>
+        <Label>Password</Label>
+        <Input
+          type="password"
+          placeholder="Enter your password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </FormGroup>
+      <Button type="submit" color="primary">
+        Login
       </Button>
     </Form>
   );
-}
+};
 
 export default Login;
