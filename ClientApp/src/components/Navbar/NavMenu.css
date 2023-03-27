@@ -30,13 +30,14 @@ html {
 }
 
 .nav-link:hover {
-  background-color: #DB5E2FFF;
+  color: #DB5E2FFF;
   text-decoration: underline;
   text-decoration-style: solid;
   text-decoration-color: #DB5E2FFF;
   text-underline-offset: 0.5em;
+  transform: scale(1.25);
 }
 
-.nav-brand {
-  color: #DB5E2FFF;
+.nav-brand:hover {
+  transform: scale(1.25);
 }

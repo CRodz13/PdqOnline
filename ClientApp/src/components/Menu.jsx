@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { data } from "../data/data.js";
-import Fade from 'react-bootstrap/Fade';
 
 function Menu() {
   const [foods, setFoods] = useState([]);
+  const [showCards, setShowCards] = useState(true);
 
   useEffect(() => {
     setFoods(data);
@@ -12,12 +12,20 @@ function Menu() {
 
   // Filter Type burgers/pizza/etc
   const filterType = (category) => {
-    setFoods(data.filter((item) => item.category === category));
+    setShowCards(false);
+    setTimeout(() => {
+      setFoods(data.filter((item) => item.category === category));
+      setShowCards(true);
+    }, 500); // wait for the fade-out transition to complete before updating the data and triggering the fade-in transition
   };
 
   // Filter by price
   const filterPrice = (price) => {
-    setFoods(data.filter((item) => item.price === price));
+    setShowCards(false);
+    setTimeout(() => {
+      setFoods(data.filter((item) => item.price === price));
+      setShowCards(true);
+    }, 500); // wait for the fade-out transition to complete before updating the data and triggering the fade-in transition
   };
 
   return (
@@ -104,7 +112,10 @@ function Menu() {
       <Row xs={1} md={3} className="g-4 pt-5">
         {foods.map((item, index) => (
           <Col key={index}>
-            <Card className="hover-scale " style={{ border: "none" }}>
+            <Card
+              className="hover-scale"
+              style={{ border: "none", transition: "opacity 1s ease-in", opacity: showCards ? "1" : "0" }}
+            >
               <Card.Img
                 variant="top"
                 src={item.image}

@@ -20,6 +20,15 @@ code {
   border-color: #1861ac;
 }
 
+.card {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.card.fade-out {
+  opacity: 0;
+}
+
 .card-title {
   color: #DB5E2FFF;
   font-family: Impact;
